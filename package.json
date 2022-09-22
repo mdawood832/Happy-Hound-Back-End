@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/mdawood832/Happy-Hound-Back-End#readme",
   "dependencies": {
+ mongo-config-
+    "dotenv": "^16.0.2",
+
+ main
     "express": "^4.18.1"
   }
 }
