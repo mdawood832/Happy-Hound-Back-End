@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
-const Schema = mongoose.Schema
 
-const Product = new Schema(
-  {
+const mongoose = require('mongoose')
+
+const productSchema = new mongoose.Schema({
+  
     name: { 
       type: String, 
       required: true 
@@ -23,8 +23,8 @@ const Product = new Schema(
       type: String, 
       required: true 
       }
-  },
-  { timestamps: true }
+  }
 )
 
-export default mongoose.model('products', Product)
+const Product = mongoose.model('Product', productSchema)
+module.exports = Product
