@@ -1,7 +1,12 @@
-const db = require('../models');
+const db = require('../models'); //this is models index
 
+// const index = (req, res) => {
+//     res.send('Get route is working')
+//   }
+  
+ 
 const index = (req, res) => {
-  db.Product.find({}, (error, holidays) => {
+  db.Product.find({}, (error, products) => {
     if(error) return res.status(400).json({ error: error.message });
 
     return res.status(200).json({
@@ -23,7 +28,7 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  db.product.findByIdAndUpdate(
+  db.Product.findByIdAndUpdate(
     req.params.id, 
     {
       $set: req.body
