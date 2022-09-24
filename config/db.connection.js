@@ -13,8 +13,6 @@ mongoose.connection.on('error', (err)=> console.log(err.message));
 
 mongoose.connection.on('disconnected', ()=> console.log('mongoose disconnected'));
 
-// module.exports = {
-//     Product: require('./models/Product.js')
-// }
+
 
 
