@@ -1,7 +1,7 @@
 /* == External Modules == */
 const express = require('express');
 const methodOverride = require('method-override');
-require("dotenv").config() //do i need this here??
+
 
 /* == Internal Modules == */
 const routes = require('./routes');
