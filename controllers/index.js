@@ -1,3 +1,4 @@
 module.exports = {
-	products: require('./products.ctrls.js')
+	products: require('./products.ctrls.js'),
+	users: require('./users.ctrls'),
 }
