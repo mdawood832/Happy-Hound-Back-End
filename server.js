@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 /* == External Modules == */
 const express = require('express');
-const methodOverride = require('method-override');
+// const methodOverride = require('method-override');
 
 
 /* == Internal Modules == */
@@ -21,7 +23,7 @@ const corsOptions = {
 }
 
 /* == sessions ==*/
-// const session = require('express-session');
+const session = require('express-session');
 
 /* == Express Instance == */
 const app = express();
@@ -34,16 +36,24 @@ require('./config/db.connection');
 
 /* == Middleware == */
 app.use(cors(corsOptions)) 
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+	})
+);
+
 app.use(express.json());
-//body data middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"))
+// app.use(methodOverride("_method"))
 
 /* == Routes == */
 app.use('/products', routes.products);
 //routes.users goes here?
 
+
 /* == App listening == */
 app.listen(PORT, () => {
-  console.log(`🎉🎊 celebrations happening on port http://localhost:${PORT} 🎉🎊`);
+  console.log(`🐶 Happy-Hound happening on port http://localhost:${PORT} 🐶`);
 });
