@@ -1,18 +1,21 @@
+
 //dependencies
 require("dotenv").config() //do i need this here or in server.js??
 const mongoose = require('mongoose');
 
-const db = process.env.MONGODB_URI || 'mongodb://localhost:27017/productsDB';
+/* == connection string == */
 
-// set up connection with the DB
-mongoose.connect(db);
+const connectionStr = process.env.MONGODB_URI;
 
-// set up listeners to monitor your database connection
-mongoose.connection.on('connected', ()=> console.log(`Connected to - ${db.host} : ${db.port}`));
+/* == set up our connection == */
 
-mongoose.connection.on('error', (err)=> console.log(err.message));
+mongoose.connect(connectionStr);
 
-mongoose.connection.on('disconnected', ()=> console.log('mongoose disconnected'));
+mongoose.connection.on('connected', () => console.log('mongodb connected :)'));
+
+mongoose.connection.on('error', (error) => console.log('mongodb error', error));
+
+mongoose.connection.on('disconnected', () => console.log('mongodb disconnected :('));
 
 
 
