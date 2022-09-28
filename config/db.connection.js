@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 /* == connection string == */
 
-const connectionStr = process.env.MONGODB_URI || 'mongodb://localhost:27017/productsDB'
+const connectionStr = process.env.MONGODB_URI 
 
 /* == set up our connection == */
 
