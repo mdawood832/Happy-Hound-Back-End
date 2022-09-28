@@ -2,7 +2,6 @@ require('dotenv').config();
 
 /* == External Modules == */
 const express = require('express');
-// const methodOverride = require('method-override');
 
 
 /* == Internal Modules == */
@@ -49,7 +48,7 @@ app.use(cors(corsOptions))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(methodOverride("_method"))
+
 
 /* == Routes == */
 app.get('/', function (req, res) {
