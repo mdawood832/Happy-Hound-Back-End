@@ -58,7 +58,7 @@ app.get('/', function (req, res) {
 
 /* == Routes == */
 app.use('/products', routes.products);
-// app.use('/users', routes.users)
+app.use('/users', routes.users)
 
 
 /* == App listening == */
