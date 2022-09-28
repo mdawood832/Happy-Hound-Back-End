@@ -10,32 +10,41 @@ const routes = require('./routes');
 
 /* == cors == */
 const cors = require('cors');
-//an array of development url and deployment url
-const whitelist = ['http://localhost:3003', 'https://fathomless-sierra-68956.herokuapp.com']
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
 
 /* == sessions ==*/
 const session = require('express-session');
 
+/* == Port == */
+const PORT = process.env.PORT || 3003;
+
 /* == Express Instance == */
 const app = express();
 
-/* == Port == */
-const PORT = process.env.PORT || 3003;
 
 /* == DB connection == */
 require('./config/db.connection');
 
+
+const whitelist = ['http://localhost:3003', 'https://fathomless-sierra-68956.herokuapp.com']
+
+
+
+const corsOptions = {
+	origin: (origin, callback) => {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	// This is needed for accept credentials from the front-end
+	credentials: true,
+};
+
+
 /* == Middleware == */
 app.use(cors(corsOptions)) 
+
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
@@ -43,14 +52,27 @@ app.use(
 		saveUninitialized: false,
 	})
 );
+// const isAuthenticated = (req, res, next) => {
+// 	if (req.session.currentUser) {
+// 		return next();
+// 	} else {
+// 		res.status(403).json({ msg: 'login required' });
+// 	}
+// };
 
-app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // app.use(methodOverride("_method"))
 
 /* == Routes == */
+app.get('/', function (req, res) {
+	res.send('hello');
+});
+
+/* == Routes == */
 app.use('/products', routes.products);
-//routes.users goes here?
+app.use('/users', routes.users)
 
 
 /* == App listening == */

@@ -2,6 +2,7 @@
 const db = require('../models');
 const bcrypt = require('bcrypt');
 
+
 // POST ROUTE sign up
 const signup = (req, res) => {
     //hash and salt the password
