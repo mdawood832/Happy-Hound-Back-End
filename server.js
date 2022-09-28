@@ -12,7 +12,7 @@ const routes = require('./routes');
 const cors = require('cors');
 
 /* == sessions ==*/
-const session = require('express-session');
+// const session = require('express-session');
 
 /* == Port == */
 const PORT = process.env.PORT || 3003;
@@ -45,20 +45,6 @@ const corsOptions = {
 /* == Middleware == */
 app.use(cors(corsOptions)) 
 
-app.use(
-	session({
-		secret: process.env.SESSION_SECRET,
-		resave: false,
-		saveUninitialized: false,
-	})
-);
-// const isAuthenticated = (req, res, next) => {
-// 	if (req.session.currentUser) {
-// 		return next();
-// 	} else {
-// 		res.status(403).json({ msg: 'login required' });
-// 	}
-// };
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -72,7 +58,7 @@ app.get('/', function (req, res) {
 
 /* == Routes == */
 app.use('/products', routes.products);
-app.use('/users', routes.users)
+// app.use('/users', routes.users)
 
 
 /* == App listening == */
