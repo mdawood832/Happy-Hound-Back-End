@@ -1,4 +1,4 @@
-  
+ const User = require('../models/User.js') 
 const db = require('../models');
 const bcrypt = require('bcrypt');
 
@@ -8,7 +8,7 @@ const signup = (req, res) => {
     //hash and salt the password
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
   
-    db.User.create(req.body, (error, createdUser) => {
+    User.create(req.body, (error, createdUser) => {
       if(error) {
         res.status(400).json({ error: error.message })
       } else {
@@ -22,7 +22,7 @@ const signup = (req, res) => {
   // USER LOGIN ROUTE (CREATE SESSION)
   const login = (req, res) => {
   
-    db.User.findOne({ username: req.body.username }, (err, foundUser) => {
+    User.findOne({ username: req.body.username }, (err, foundUser) => {
       if(err) {
         res.send(err)
       } else {
