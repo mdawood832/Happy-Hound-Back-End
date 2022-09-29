@@ -1,4 +1,7 @@
+
+const User = require('./User.js')
+
 module.exports = {
     Product: require('./Product.js'),
-    User: require('./User.js'),
+    User: User,
 }
