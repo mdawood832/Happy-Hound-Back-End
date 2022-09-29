@@ -1,5 +1,4 @@
-// import db from '../config/db.connection.js'
-// import Product from '../models/Product.js'
+
 require('dotenv').config();
 
 const mongoose = require('mongoose');

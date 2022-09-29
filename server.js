@@ -11,7 +11,7 @@ const routes = require('./routes');
 const cors = require('cors');
 
 /* == sessions ==*/
-// const session = require('express-session');
+const session = require('express-session');
 
 /* == Port == */
 const PORT = process.env.PORT || 3003;
@@ -24,9 +24,7 @@ const app = express();
 require('./config/db.connection');
 
 
-const whitelist = ['http://localhost:3003', 'https://fathomless-sierra-68956.herokuapp.com']
-
-
+const whitelist = ['http://localhost:3003', `${process.env.FRONTEND_URL}`]
 
 const corsOptions = {
 	origin: (origin, callback) => {
@@ -43,9 +41,13 @@ const corsOptions = {
 
 /* == Middleware == */
 app.use(cors(corsOptions)) 
-
-
-
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+	})
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
