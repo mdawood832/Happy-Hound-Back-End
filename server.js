@@ -51,9 +51,9 @@ app.use(express.json());
 
 
 /* == Routes == */
-app.get('/', function (req, res) {
-	res.send('hello');
-});
+// app.get('/', function (req, res) {
+// 	res.send('hello');
+// });
 
 /* == Routes == */
 app.use('/products', routes.products);

@@ -1,9 +1,22 @@
-import db from '../config/db.connection.js'
-import Product from '../models/Product.js'
+// import db from '../config/db.connection.js'
+// import Product from '../models/Product.js'
+require('dotenv').config();
+
+const mongoose = require('mongoose');
+const db = require('../models');
+
+/* == connection string == */
+
+const connectionStr = process.env.MONGODB_URI
+
+/* == set up our connection == */
+
+mongoose.connect(connectionStr);
+
 
 const insertData = async () => {
     // reset database
-    await db.dropDatabase()
+    // await db.dropDatabase()
 
 
 const products = [
@@ -94,11 +107,11 @@ const products = [
 
 ]
     // insert products into database
-    await Product.insertMany(products)
-    console.log('Created users & products!')
+    await db.Product.insertMany(products)
+    console.log('products!', products)
   
     // close database connection. done.
-    db.close()
+    // db.close()
 }
 
 insertData()

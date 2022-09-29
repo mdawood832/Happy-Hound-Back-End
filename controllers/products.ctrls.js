@@ -7,6 +7,7 @@ const db = require('../models'); //this is models index
  
 const index = (req, res) => {
   db.Product.find({}, (error, products) => {
+    console.log(products)
     if(error) return res.status(400).json({ error: error.message });
 
     return res.status(200).json({
