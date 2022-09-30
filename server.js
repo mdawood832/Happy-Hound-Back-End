@@ -24,7 +24,7 @@ const app = express();
 require('./config/db.connection');
 
 
-const whitelist = ['http://localhost:3003', `${process.env.FRONTEND_URL}`]
+const whitelist = ['http://localhost:3000', `${process.env.FRONTEND_URL}`]
 
 const corsOptions = {
 	origin: (origin, callback) => {
