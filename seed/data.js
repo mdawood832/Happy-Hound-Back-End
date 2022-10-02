@@ -14,8 +14,7 @@ mongoose.connect(connectionStr);
 
 
 const insertData = async () => {
-    // reset database
-    // await db.dropDatabase()
+   
 
 
 const products = [
@@ -107,10 +106,9 @@ const products = [
 ]
     // insert products into database
     await db.Product.insertMany(products)
-    console.log('products!', products)
+    // console.log('products!', products)
   
-    // close database connection. done.
-    // db.close()
+    
 }
 
 insertData()
